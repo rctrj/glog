@@ -33,10 +33,10 @@ const (
 	StripLevelMinimumFields StripLevel = "minimum_fields" //only message and fields specifically marked to be minimal data are printed. Rest are pruned
 )
 
-func (s StripLevel) isNone() bool          { return s == StripLevelNone }
-func (s StripLevel) isMinimal() bool       { return s == StripLevelMinimal }
-func (s StripLevel) isMessageOnly() bool   { return s == StripLevelMessageOnly }
-func (s StripLevel) isMinimumFields() bool { return s == StripLevelMinimumFields }
+func (s StripLevel) IsNone() bool          { return s == StripLevelNone }
+func (s StripLevel) IsMinimal() bool       { return s == StripLevelMinimal }
+func (s StripLevel) IsMessageOnly() bool   { return s == StripLevelMessageOnly }
+func (s StripLevel) IsMinimumFields() bool { return s == StripLevelMinimumFields }
 
 const (
 	Black color = iota + 30

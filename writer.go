@@ -61,7 +61,7 @@ func (l *Logger) modifyMsg(msg string, level Level) string {
 func (l *Logger) pruneEntries(entries []*entry) (remaining []*entry) {
 	sl := l.conf.StripLevel
 
-	if sl.isMessageOnly() {
+	if sl.IsMessageOnly() {
 		return
 	}
 
@@ -70,7 +70,7 @@ func (l *Logger) pruneEntries(entries []*entry) (remaining []*entry) {
 			continue
 		}
 
-		if sl.isMinimumFields() && !e.isMinimalInfo {
+		if sl.IsMinimumFields() && !e.isMinimalInfo {
 			continue
 		}
 
@@ -81,7 +81,7 @@ func (l *Logger) pruneEntries(entries []*entry) (remaining []*entry) {
 }
 
 func (l *Logger) extraParams() []*entry {
-	if !l.conf.StripLevel.isNone() {
+	if !l.conf.StripLevel.IsNone() {
 		return []*entry{}
 	}
 

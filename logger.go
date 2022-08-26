@@ -21,6 +21,20 @@ type Logger struct {
 	printPrefix string
 }
 
+func NewConfig(
+	levelStr string,
+	stripLevelStr string,
+	prettyPrint bool,
+	displayPrefix bool,
+) Config {
+	return Config{
+		Level:         Level(levelStr),
+		StripLevel:    StripLevel(stripLevelStr),
+		PrettyPrint:   prettyPrint,
+		DisplayPrefix: displayPrefix,
+	}
+}
+
 func New(conf Config, core core) *Logger {
 	return newLogger(conf, core)
 }
