@@ -12,12 +12,12 @@ type callFrame struct {
 	Line     int
 }
 
-func callers(skip int, levels int) (caller callFrame, stack []callFrame) {
+func callers(skip int, levels int) (stack []callFrame) {
 	stack = make([]callFrame, 0)
-	rpc := make([]uintptr, levels)
-	n := runtime.Callers(skip+2, rpc[:])
+	callers := make([]uintptr, levels)
+	n := runtime.Callers(skip+2, callers[:])
 
-	frames := runtime.CallersFrames(rpc[:n])
+	frames := runtime.CallersFrames(callers[:n])
 	for {
 		frame, more := frames.Next()
 		stack = append(stack, callFrame{
@@ -31,12 +31,9 @@ func callers(skip int, levels int) (caller callFrame, stack []callFrame) {
 		}
 	}
 
-	if len(stack) > 0 {
-		caller = stack[0]
-	}
 	return
 }
 
-func (cf callFrame) prettyString() string {
-	return fmt.Sprintf("%s @%s: %d", cf.File, filepath.Base(cf.Function), cf.Line)
+func (c callFrame) prettyString() string {
+	return fmt.Sprintf("%s @%s: %d", c.File, filepath.Base(c.Function), c.Line)
 }
