@@ -149,7 +149,7 @@ func KVContextual(key string, value any) Entry {
 }
 
 func Error(err error) Entry {
-	return KV("error", err)
+	return KV("error", err.Error())
 }
 
 func (l Logger) Trace(ctx context.Context, message string, entries ...Entry) {
